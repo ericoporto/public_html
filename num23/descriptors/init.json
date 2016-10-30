@@ -7,10 +7,7 @@
     },
     "MusicList":{
         "villa" : "villa.ogg",
-        "battle_1": "battle_1.ogg",
-        "battle_win": "battle_win.ogg",
-        "opening": "opening.ogg",
-        "forest": "forest.ogg"
+        "opening": "opening.ogg"
     },
     "HMSFile": "hms.json",
     "LevelsList": {
