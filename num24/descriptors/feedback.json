@@ -1,0 +1,11 @@
+{
+    "Feedback":{
+        "stop":{"s":"audioStop",
+                "v":[10,5,10]
+        },
+        "word":{
+        "s": "audioWord",
+        "v": [10]
+        }
+    }
+}
