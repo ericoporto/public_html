@@ -11,8 +11,7 @@ keto.setup(true);
 tframe = 0;
 
 function getColor(colorname){
-  game_colors= {'time_circle':'#7B7539','bg':'#eee1b5'};
-  return game_colors[colorname];
+  return level[curr_level].colors[colorname];
 }
 
 var first_action = 0;
@@ -86,6 +85,7 @@ function game_start(){
 
     reset();
     draw();
+    setTimeForNewWord();
 }
 
 function boot_game(){
@@ -101,19 +101,35 @@ function boot_game(){
 }
 
 function drawLevel(){
-    bg_ctx.fillStyle=getColor('bg');
+    bg_ctx.fillStyle=getColor('level_bg');
     bg_ctx.fillRect(0,0,w,h);
     bg_ctx.drawImage(document.getElementById(level[curr_level].bgimg),0,0,252,194);
-    bg_ctx.fillStyle=getColor('time_circle');
+    bg_ctx.fillStyle=getColor('main_hud');
     bg_ctx.fillRect(1,1,160,16);
     bg_ctx.beginPath();
     bg_ctx.arc(w-16, h-16, 16, 0, 2 * Math.PI);
     bg_ctx.fill();
 }
 
-word_queue = []
+word_queue = [];
+time_new_word = 0;
+i_time_count=0;
+j_time_count=0;
+function setTimeForNewWord(){
+  if(j_time_count>level[curr_level].word_time_count[i_time_count][1]){
+      j_time_count=0;
+      i_time_count++;
+  }
+  if(i_time_count < level[curr_level].word_time_count.length){
+      time_new_word=level[curr_level].word_time_count[i_time_count][0];
+      j_time_count++;
+  } else {
+    time_new_word = 0;
+  }
+}
 
 function pushNewWord(){
+  setTimeForNewWord();
   var aword = level[curr_level].wordlist[Math.floor(Math.random()*level[curr_level].wordlist.length)];
   var posx = Math.floor(Math.random()*w-50)
   if( posx <4) posx = 4;
@@ -126,17 +142,19 @@ function drawText(){
   hud_ctx.clearRect(0,0,w,h)
   png_font.drawText(level[curr_level].levelname, [1,1],getColor('bg'),1);
   for(var i=0; i<word_queue.length; i++){
-      png_font.drawText(word_queue[i].word,word_queue[i].pos,getColor('time_circle'),1);
+      png_font.drawText(word_queue[i].word,word_queue[i].pos,getColor('word'),1);
       png_font.drawText(word_queue[i].word.charAt(word_queue[i].carret),
                        [word_queue[i].pos[0]+word_queue[i].carret*8,word_queue[i].pos[1]],
-                       'red',1);
+                       getColor('sel_letter'),1,getColor('sel_letter'));
   }
 }
 
 function draw(){
     tframe++;
-    if(tframe%240==0){
-        pushNewWord();
+    if(time_new_word>0){
+        if(tframe%time_new_word==0){
+            pushNewWord();
+        }
     }
     drawText();
     window.requestAnimationFrame(draw);
