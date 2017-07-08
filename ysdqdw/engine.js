@@ -10,6 +10,14 @@ curr_level = 0;
 keto.setup(true);
 tframe = 0;
 
+function goToNextLevel(){
+    curr_level++;
+    drawLevel();
+    time_new_word = 240;
+    i_time_count=0;
+    j_time_count=0;
+}
+
 function getColor(colorname){
   return level[curr_level].colors[colorname];
 }
@@ -103,12 +111,13 @@ function boot_game(){
 function drawLevel(){
     bg_ctx.fillStyle=getColor('level_bg');
     bg_ctx.fillRect(0,0,w,h);
-    bg_ctx.drawImage(document.getElementById(level[curr_level].bgimg),0,0,252,194);
-    bg_ctx.fillStyle=getColor('main_hud');
-    bg_ctx.fillRect(1,1,160,16);
-    bg_ctx.beginPath();
-    bg_ctx.arc(w-16, h-16, 16, 0, 2 * Math.PI);
-    bg_ctx.fill();
+    bg_ctx.drawImage(document.getElementById(level[curr_level].bgimg),0,0,256,248);
+    bg_ctx.globalAlpha = 0.6;
+    bg_ctx.fillStyle=getColor('pic_bg');
+    var levelname_length = level[curr_level].levelname.length*8;
+    var x_title = Math.floor((w-levelname_length)/2);
+    bg_ctx.fillRect(x_title-2,0,levelname_length+4,24);
+    bg_ctx.globalAlpha = 1.0;
 }
 
 word_queue = [];
@@ -125,23 +134,31 @@ function setTimeForNewWord(){
       j_time_count++;
   } else {
     time_new_word = 0;
+    goToNextLevel();
   }
 }
 
 function pushNewWord(){
   setTimeForNewWord();
   var aword = level[curr_level].wordlist[Math.floor(Math.random()*level[curr_level].wordlist.length)];
-  var posx = Math.floor(Math.random()*w-50)
-  if( posx <4) posx = 4;
-  var posy = Math.floor(Math.random()*32+194)
+  var posx = Math.floor(Math.random()*w-60)
+  if( posx <8) posx = 8;
+  var posy = Math.floor(Math.random()*100+128)
   var position =  [posx,posy];
   word_queue.push({word: aword, pos: position, wlength: aword.length, carret:0});
 }
 
 function drawText(){
   hud_ctx.clearRect(0,0,w,h)
-  png_font.drawText(level[curr_level].levelname, [1,1],getColor('bg'),1);
+  var levelname_length = level[curr_level].levelname.length*8;
+  var x_title = Math.floor((w-levelname_length)/2);
+  png_font.drawText(level[curr_level].levelname, [x_title,1],getColor('word'),1);
   for(var i=0; i<word_queue.length; i++){
+      hud_ctx.globalAlpha = 0.6;
+      hud_ctx.fillStyle=getColor('pic_bg');
+      hud_ctx.fillRect(word_queue[i].pos[0]-2,word_queue[i].pos[1]-2,word_queue[i].wlength*8+4,24);
+      hud_ctx.globalAlpha = 1.0;
+  
       png_font.drawText(word_queue[i].word,word_queue[i].pos,getColor('word'),1);
       png_font.drawText(word_queue[i].word.charAt(word_queue[i].carret),
                        [word_queue[i].pos[0]+word_queue[i].carret*8,word_queue[i].pos[1]],
