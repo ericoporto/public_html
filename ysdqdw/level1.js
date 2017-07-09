@@ -1,5 +1,5 @@
 level[1] = {
-levelname: 'the writer',
+levelname: 'the angel',
 bgimg: 'level1_bg',
 wordlist: ['story','always','write','keep','writing'],
 word_time_count: [[220,3],[180,3],[120,2],[70,4],[50,5]],

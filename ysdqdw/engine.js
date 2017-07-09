@@ -13,9 +13,10 @@ tframe = 0;
 function goToNextLevel(){
     curr_level++;
     drawLevel();
-    time_new_word = 240;
+    time_new_word = 140;
     i_time_count=0;
     j_time_count=0;
+    almost_read_to_next_level = false;
 }
 
 function getColor(colorname){
@@ -124,6 +125,7 @@ word_queue = [];
 time_new_word = 0;
 i_time_count=0;
 j_time_count=0;
+almost_read_to_next_level=false;
 function setTimeForNewWord(){
   if(j_time_count>level[curr_level].word_time_count[i_time_count][1]){
       j_time_count=0;
@@ -134,7 +136,7 @@ function setTimeForNewWord(){
       j_time_count++;
   } else {
     time_new_word = 0;
-    goToNextLevel();
+    almost_read_to_next_level=true;
   }
 }
 
@@ -201,6 +203,13 @@ function ketoKeyDown(e){
             word_queue[i].carret+=1;
             if(word_queue[i].carret>=word_queue[i].wlength){
                word_queue.splice(i, 1);
+               if(almost_read_to_next_level){
+                  if(word_queue.length<1){
+                      goToNextLevel();
+                  }
+               } else {
+                  pushNewWord();
+               }
                break;
             }
         }
