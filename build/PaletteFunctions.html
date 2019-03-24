@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Palette functions</title>
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/milligram.min.css" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+
+  <div class="container">
+    <nav class="navigation">
+      <section class="container">
+        <div class="float-left">
+          <a class="navigation-title" href="index.html">
+            <img src="static/logo.png" alt="AGS Manual">
+            <h1 class="title">AGS Manual</h1>
+          </a>
+        </div>
+        <div class="float-right">
+          <ul class="navigation-list float-right">
+            <li class="navigation-item">
+              <input type="search" id="search_input">
+            </li>
+          </ul>
+        </div>
+      </section>
+    </nav>
+
+    <header>
+      <ul id="search_results">
+      </ul>
+    </header>
+
+    <section>
+      <div class="row">
+        <div class="column">
+          <nav id="TOC">
+            <ul>
+              <li><a href="genindex.html">Index</a></li>
+            </ul>
+<ul>
+<li><a href="#palette-functions">Palette functions</a><ul>
+<li><a href="#cyclepalette">CyclePalette</a></li>
+<li><a href="#setpalrgb">SetPalRGB</a></li>
+<li><a href="#updatepalette">UpdatePalette</a></li>
+</ul></li>
+</ul>
+          </nav>
+        </div>
+        <div class="column column-75">
+<section id="palette-functions" class="level2">
+<h2>Palette functions</h2>
+<section id="cyclepalette" class="level3">
+<h3>CyclePalette</h3>
+<pre><code>CyclePalette (int start, int end)
+</code></pre>
+<p>This is used for special effects, like the flowing colours on the Space Quest 4 title screen, and the Sierra logo of the later Sierra games. The palette indexes from START to END are cycled around one slot. Using this call in a repeatedly_execute function gives the effect of animation.</p>
+<p>By default, the colours rotate leftwards through the palette. If you pass the arguments the other way round (ie. START being larger than END) then the colours will rotate in the opposite direction.</p>
+<p><strong>NOTE:</strong> This command only works in 256-colour games.</p>
+<p>Example:</p>
+<pre><code>CyclePalette(10,200);
+</code></pre>
+<p>will cause the palette indexes from 10 to 200 cycle around one slot and give a color effect.</p>
+<p><em>See Also:</em> <a href="ScreenFunctions.html#fadein">FadeIn</a>, <a href="ScreenFunctions.html#fadeout">FadeOut</a>, <a href="PaletteFunctions.html#setpalrgb">SetPalRGB</a></p>
+<hr />
+</section>
+<section id="setpalrgb" class="level3">
+<h3>SetPalRGB</h3>
+<pre><code>SetPalRGB (int slot, int red, int green, int blue)
+</code></pre>
+<p>Changes the RGB components of one of the palette slots. The palette is initially set up in the Palette Editor, but you can override it during the game using this function for special effects. The RED, GREEN and BLUE parameters each range from 0 to 63 (as used in the Palette Editor).</p>
+<p>If SLOT is a background slot, then this function's effect will last until the player changes screen, when the palette is changed to the new room's palette. If SLOT is not a background slot, the effect of this function is permanent.</p>
+<p>NOTE: This function will allow you to change the colours which are "locked" in the AGS Editor. However, you should not normally do this as it can cause strange colours in the game.</p>
+<p>Example:</p>
+<pre><code>SetPalRGB(10,63,63,21);
+</code></pre>
+<p>will change palette slot number 10 from light green to yellow</p>
+<p><em>See Also:</em> <a href="PaletteFunctions.html#cyclepalette">CyclePalette</a>, <a href="ScreenFunctions.html#fadein">FadeIn</a>, <a href="ScreenFunctions.html#fadeout">FadeOut</a>, <a href="PaletteFunctions.html#updatepalette">UpdatePalette</a></p>
+<hr />
+</section>
+<section id="updatepalette" class="level3">
+<h3>UpdatePalette</h3>
+<pre><code>UpdatePalette()
+</code></pre>
+<p>Commits the changes you made to the game palette. The script global variable palette[] stores the state of all the colours of the palette. You can access the red, green and blue components with .r, .g and .b. The values range from 0 to 63.</p>
+<p>Example:</p>
+<pre><code>palette[16].r = 60;
+UpdatePalette();
+</code></pre>
+<p>will make the black colour turn bright red. When you actually change the variable, nothing happens. Call this function to update the screen.</p>
+<p><em>See Also:</em> <a href="PaletteFunctions.html#setpalrgb">SetPalRGB</a></p>
+</section>
+</section>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <script type="text/javascript" src="js/search.js"></script>
+</body>
+</html>

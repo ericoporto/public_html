@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Upgrading to AGS 3.3.5</title>
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/milligram.min.css" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+
+  <div class="container">
+    <nav class="navigation">
+      <section class="container">
+        <div class="float-left">
+          <a class="navigation-title" href="index.html">
+            <img src="static/logo.png" alt="AGS Manual">
+            <h1 class="title">AGS Manual</h1>
+          </a>
+        </div>
+        <div class="float-right">
+          <ul class="navigation-list float-right">
+            <li class="navigation-item">
+              <input type="search" id="search_input">
+            </li>
+          </ul>
+        </div>
+      </section>
+    </nav>
+
+    <header>
+      <ul id="search_results">
+      </ul>
+    </header>
+
+    <section>
+      <div class="row">
+        <div class="column">
+          <nav id="TOC">
+            <ul>
+              <li><a href="genindex.html">Index</a></li>
+            </ul>
+<ul>
+<li><a href="#upgrading-to-ags-335">Upgrading to AGS 3.3.5</a></li>
+</ul>
+          </nav>
+        </div>
+        <div class="column column-75">
+<section id="upgrading-to-ags-335" class="level2">
+<h2>Upgrading to AGS 3.3.5</h2>
+<p>Since 3.3.5 AGS does not allow to <strong>write</strong> any files into other path rather than "<code>$SAVEGAMEDIR$</code>" (personal user saves directory) or "<code>$APPDATADIR$</code>" (all-users game data directory). If you attempt to open file for <strong>writing</strong> using relative path without location tag, the filepath will be automatically remapped to <code>$APPDATADIR$</code> location.</p>
+<p>Because of that, for backwards compatibility reasons, when you try to open file for reading using relative path without location tag, AGS will first look for that file in <code>$APPDATADIR$</code>, and only if no matching file is found there, then the game installation directory will be checked.</p>
+<p>To force opening file in the game installation directory (for reading) a new location tag was introduced: "<code>$INSTALLDIR$</code>". When using this tag you will explicitly tell AGS to look in and only in the game's installation directory. However, if you try opening file for writing at such location, that will result in failure.</p>
+<p>Players are now allowed to set up their own custom path in game setup, where the game saves&amp;data will be written. This is done in the game setup program. This works as if <code>$SAVEGAMEDIR$</code> and <code>$APPDATADIR$</code> were redirected to custom location. Redirection is done internally by the engine, you do not need to add anything to your game scripts to make it work.</p>
+<p>Conceptually, AGS is gradually leaning towards using only "symbols of file locations" rather than actual, explicit locations on the filesystem.</p>
+<p>Furthermore, game setup will now write config file into game saves location, rather than game's installation directory. If config file is present in the game installation folder, then it is used as "default" read-only config file. The config in saves folder overrides default one. This way it should be totally safe to install AGS games into C:/Program Files, without having administrative rights.</p>
+</section>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <script type="text/javascript" src="js/search.js"></script>
+</body>
+</html>

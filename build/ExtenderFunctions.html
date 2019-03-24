@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Extender functions</title>
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/milligram.min.css" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+
+  <div class="container">
+    <nav class="navigation">
+      <section class="container">
+        <div class="float-left">
+          <a class="navigation-title" href="index.html">
+            <img src="static/logo.png" alt="AGS Manual">
+            <h1 class="title">AGS Manual</h1>
+          </a>
+        </div>
+        <div class="float-right">
+          <ul class="navigation-list float-right">
+            <li class="navigation-item">
+              <input type="search" id="search_input">
+            </li>
+          </ul>
+        </div>
+      </section>
+    </nav>
+
+    <header>
+      <ul id="search_results">
+      </ul>
+    </header>
+
+    <section>
+      <div class="row">
+        <div class="column">
+          <nav id="TOC">
+            <ul>
+              <li><a href="genindex.html">Index</a></li>
+            </ul>
+<ul>
+<li><a href="#extender-functions">Extender functions</a></li>
+</ul>
+          </nav>
+        </div>
+        <div class="column column-75">
+<section id="extender-functions" class="level2">
+<h2>Extender functions</h2>
+<p>Suppose that you wanted to add a new function, "Scream", to characters which would make them cry out "AARRRGGGHHH". Because the Character type is defined within AGS, it's not possible for you to just add a method to it.</p>
+<p>That's where Extender Functions come in. Here's an example:</p>
+<pre><code>function Scream(this Character*)
+{
+  this.Say(&quot;AAAAARRRRGGGGHHHHHH!!!!&quot;);
+}
+</code></pre>
+<p>This adds a new "Scream" function to the Character type, so that in your script code elsewhere you can do things like:</p>
+<pre><code>player.Scream();
+character[EGO].Scream();
+cJohn.Scream();
+</code></pre>
+<p>and so on.</p>
+<p><strong>Where do I put this code?</strong></p>
+<p>In the script header, you'd put:</p>
+<p><code>import function Scream(this Character*);</code></p>
+<p>and then put the main function in the script file. This will then allow it to be used by other scripts.</p>
+<p><strong>Static extenders</strong></p>
+<p>Since AGS 3.4.0 you may also create static extender functions, that is functions that are called from type, rather than an actual object. Static extender declaration is a bit different, for example:</p>
+<pre><code>int AbsInt(static Maths, int value)
+{
+  if (value &lt; 0)
+    return -value;
+  return value;
+}
+</code></pre>
+<p>You declare the function's import in the script header:</p>
+<p><code>import int AbsInt(static Maths, int value);</code></p>
+<p>and you use such function as:</p>
+<pre><code>int x = Maths.AbsInt(-10);
+</code></pre>
+</section>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <script type="text/javascript" src="js/search.js"></script>
+</body>
+</html>

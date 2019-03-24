@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>AudioChannel functions and properties</title>
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/milligram.min.css" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+
+  <div class="container">
+    <nav class="navigation">
+      <section class="container">
+        <div class="float-left">
+          <a class="navigation-title" href="index.html">
+            <img src="static/logo.png" alt="AGS Manual">
+            <h1 class="title">AGS Manual</h1>
+          </a>
+        </div>
+        <div class="float-right">
+          <ul class="navigation-list float-right">
+            <li class="navigation-item">
+              <input type="search" id="search_input">
+            </li>
+          </ul>
+        </div>
+      </section>
+    </nav>
+
+    <header>
+      <ul id="search_results">
+      </ul>
+    </header>
+
+    <section>
+      <div class="row">
+        <div class="column">
+          <nav id="TOC">
+            <ul>
+              <li><a href="genindex.html">Index</a></li>
+            </ul>
+<ul>
+<li><a href="#audiochannel-functions-and-properties">AudioChannel functions and properties</a><ul>
+<li><a href="#seek">Seek</a></li>
+<li><a href="#setroomlocation">SetRoomLocation</a></li>
+<li><a href="#speed">Speed</a></li>
+<li><a href="#stop">Stop</a></li>
+<li><a href="#id">ID</a></li>
+<li><a href="#isplaying">IsPlaying</a></li>
+<li><a href="#lengthms">LengthMs</a></li>
+<li><a href="#panning">Panning</a></li>
+<li><a href="#playingclip">PlayingClip</a></li>
+<li><a href="#position">Position</a></li>
+<li><a href="#positionms">PositionMs</a></li>
+<li><a href="#volume">Volume</a></li>
+</ul></li>
+</ul>
+          </nav>
+        </div>
+        <div class="column column-75">
+<section id="audiochannel-functions-and-properties" class="level2">
+<h2>AudioChannel functions and properties</h2>
+<p>The AudioChannel instance represents a currently playing audio file. You can use this instance to check the status of playing sounds, and adjust them.</p>
+<hr />
+<section id="seek" class="level3">
+<h3>Seek</h3>
+<p><em>(Formerly known as SeekMIDIPosition, which is now obsolete)</em><br> <em>(Formerly known as SeekMODPattern, which is now obsolete)</em><br> <em>(Formerly known as SeekMP3PosMillis, which is now obsolete)</em></p>
+<pre><code>AudioChannel.Seek(int position)
+</code></pre>
+<p>Seeks the audio clip that is currently playing on this channel to <em>position</em>.</p>
+<p>What <em>position</em> represents depends on the FileType of the audio clip:</p>
+<ul>
+<li><strong>MIDI</strong> - the beat number</li>
+<li><strong>MOD/XM/S3M</strong> - the pattern number</li>
+<li><strong>WAV/VOC</strong> - the sample number (eg. in a 22050 Hz sound, 22050 = 1 second)</li>
+<li><strong>OGG/MP3</strong> - milliseconds offset</li>
+</ul>
+<p>Example:</p>
+<pre><code>AudioChannel *channel = aExplosion.Play();
+Wait(40);
+channel.Seek(0);
+</code></pre>
+<p>will start playing the <em>aExplosion</em> audio clip, wait for a second, then seek it back to the start.</p>
+<p><em>Compatibility:</em> Supported by <strong>AGS 3.2.0</strong> and later versions.</p>
+<p><em>See Also:</em> <a href="AudioChannel.html#position">AudioChannel.Position</a></p>
+<hr />
+</section>
+<section id="setroomlocation" class="level3">
+<h3>SetRoomLocation</h3>
+<p><em>(Formerly part of PlayAmbientSound, which is now obsolete)</em></p>
+<pre><code>AudioChannel.SetRoomLocation(int x, int y)
+</code></pre>
+<p>Sets the currently playing audio to be a directional sound, eminating from (x,y).</p>
+<p>The volume of the channel will be dynamically adjusted depending on how close the player character is to the co-ordinates. Therefore, as the player walks closer the volume will increase, and as they walk away the volume will decrease.</p>
+<p>The channel's Volume setting sets the maximum possible volume when the player is standing on the specified co-ordinates.</p>
+<p>Pass the co-ordinates as (0,0) to remove the directional effect and return this channel to playing at its normal volume.</p>
+<p>Example:</p>
+<pre><code>AudioChannel *channel = aMachine.Play();
+channel.SetRoomLocation(oMachine.X, oMachine.Y);
+</code></pre>
+<p>will start playing the <em>aMachine</em> audio clip, and set it at the location of the <em>oMachine</em> room object.</p>
+<p><em>Compatibility:</em> Supported by <strong>AGS 3.2.0</strong> and later versions.</p>
+<p><em>See Also:</em> <a href="AudioChannel.html#volume">AudioChannel.Volume</a></p>
+<hr />
+</section>
+<section id="speed" class="level3">
+<h3>Speed</h3>
+<pre><code>int AudioChannel.Speed
+</code></pre>
+<p>Gets/sets the playing audio clip's playback speed. The value is defined in clip's milliseconds per second: 1000 is default, meaning 1000 of clip's ms in 1 real second (scale 1:1). Set &lt; 1000 for slower play and &gt; 1000 for faster play. <strong>NOTE:</strong> currently works for MP3 and OGG audio clips only.</p>
+<p>Example:</p>
+<pre><code>AudioChannel *channel = aFunnyTalk.Play();
+channel.Speed = 2000;
+</code></pre>
+<p>plays <em>aFunnyTalk</em> clip at the double speed.</p>
+<p><em>Compatibility:</em> Supported by <strong>AGS 3.4.0</strong> and later versions.</p>
+<hr />
+</section>
+<section id="stop" class="level3">
+<h3>Stop</h3>
+<p><em>(Formerly known as StopAmbientSound, which is now obsolete)</em><br> <em>(Formerly known as StopChannel, which is now obsolete)</em></p>
+<pre><code>AudioChannel.Stop()
+</code></pre>
+<p>Stops the sound that is currently playing on this audio channel.</p>
+<p>Example:</p>
+<pre><code>AudioChannel *channel = aExplosion.Play();
+Wait(40);
+channel.Stop();
+</code></pre>
+<p>will start playing the <em>aExplosion</em> audio clip, wait for a second, then stop it.</p>
+<p><em>Compatibility:</em> Supported by <strong>AGS 3.2.0</strong> and later versions.</p>
+<p><em>See Also:</em> <a href="Multimedia.html#stopaudio">Game.StopAudio</a></p>
+<hr />
+</section>
+<section id="id" class="level3">
+<h3>ID</h3>
+<pre><code>readonly int AudioChannel.ID
+</code></pre>
+<p>Gets the Channel ID of this audio channel. You will not normally need to use this, but it can be used for inter-operating with legacy commands such as StopChannel.</p>
+<p>Example:</p>
+<pre><code>AudioChannel *channel = aExplosion.Play();
+Display(&quot;Explosion playing on channel %d&quot;, channel.ID);
+</code></pre>
+<p>will start playing the <em>aExplosion</em> audio clip, and display which channel it is playing on.</p>
+<p><em>Compatibility:</em> Supported by <strong>AGS 3.2.0</strong> and later versions.</p>
+<hr />
+</section>
+<section id="isplaying" class="level3">
+<h3>IsPlaying</h3>
+<p><em>(Formerly known as IsChannelPlaying, which is now obsolete)</em></p>
+<pre><code>readonly bool AudioChannel.IsPlaying
+</code></pre>
+<p>Gets whether this audio channel is currently playing a sound. Returns <em>true</em> if it is, or <em>false</em> if it is not.</p>
+<p>Example:</p>
+<pre><code>AudioChannel *channel = aExplosion.Play();
+while (channel.IsPlaying) Wait(1);
+Display(&quot;Finished playing the explosion&quot;);
+</code></pre>
+<p>will start playing the <em>aExplosion</em> audio clip, and wait until it finishes.</p>
+<p><em>Compatibility:</em> Supported by <strong>AGS 3.2.0</strong> and later versions.</p>
+<p><em>See Also:</em> <a href="AudioClip.html#play">AudioClip.Play</a></p>
+<hr />
+</section>
+<section id="lengthms" class="level3">
+<h3>LengthMs</h3>
+<pre><code>readonly int AudioChannel.LengthMs
+</code></pre>
+<p>Gets the length of the audio playing on this channel, in milliseconds.</p>
+<p>This is supported by all file types, but with MIDI music it is only accurate to the nearest second.</p>
+<p>If this channel is not currently playing any audio, returns 0.</p>
+<p>Example:</p>
+<pre><code>AudioChannel *channel = aExplosion.Play();
+Display(&quot;The Explosion sound is %d ms long.&quot;, channel.LengthMs);
+</code></pre>
+<p>will start playing the <em>aExplosion</em> audio clip, then display its length.</p>
+<p><em>Compatibility:</em> Supported by <strong>AGS 3.2.0</strong> and later versions.</p>
+<p><em>See Also:</em> <a href="AudioChannel.html#positionms">AudioChannel.PositionMs</a></p>
+<hr />
+</section>
+<section id="panning" class="level3">
+<h3>Panning</h3>
+<pre><code>int AudioChannel.Panning
+</code></pre>
+<p>Gets/sets the panning of this audio channel.</p>
+<p>Panning allows you to adjust the stereo balance of the audio. The default is 0, which is centred and will play at the same volume on both speakers. However you can adjust this between -100 (fully left) to 100 (fully right) to adjust the balance between the speakers.</p>
+<p><strong>NOTE:</strong> MIDI music files do not support panning.</p>
+<p>Example:</p>
+<pre><code>AudioChannel *channel = aExplosion.Play();
+channel.Panning = -100;
+</code></pre>
+<p>will start playing the <em>aExplosion</em> audio clip on the left speaker only.</p>
+<p><em>Compatibility:</em> Supported by <strong>AGS 3.2.0</strong> and later versions.</p>
+<p><em>See Also:</em> <a href="AudioClip.html#play">AudioClip.Play</a></p>
+<hr />
+</section>
+<section id="playingclip" class="level3">
+<h3>PlayingClip</h3>
+<p><em>(Formerly known as GetCurrentMusic, which is now obsolete)</em></p>
+<pre><code>readonly AudioClip* AudioChannel.PlayingClip
+</code></pre>
+<p>Gets the audio clip that is playing on this channel. This allows you to find out the type of the clip, and other information.</p>
+<p>Returns <em>null</em> if there is no sound currently playing on this channel.</p>
+<p>Example:</p>
+<pre><code>AudioChannel *channel = System.AudioChannels[2];
+if (channel.PlayingClip == null)
+{
+  Display(&quot;Nothing is playing on channel 2&quot;);
+}
+else
+{
+  Display(&quot;Channel 2 is playing a clip of type %d&quot;, channel.PlayingClip.Type);
+}
+</code></pre>
+<p>will display what is currently playing on audio channel 2.</p>
+<p><em>Compatibility:</em> Supported by <strong>AGS 3.2.0</strong> and later versions.</p>
+<p><em>See Also:</em> <a href="AudioClip.html#play">AudioClip.Play</a>, <a href="System.html#audiochannels">System.AudioChannels</a></p>
+<hr />
+</section>
+<section id="position" class="level3">
+<h3>Position</h3>
+<p><em>(Formerly known as GetMIDIPosition, which is now obsolete)</em><br> <em>(Formerly known as GetMODPattern, which is now obsolete)</em><br> <em>(Formerly known as GetMP3PosMillis, which is now obsolete)</em></p>
+<pre><code>readonly int AudioChannel.Position
+</code></pre>
+<p>Gets the current position of the audio playing on this channel.</p>
+<p>What <em>position</em> represents depends on the FileType of the audio clip:</p>
+<ul>
+<li><strong>MIDI</strong> - the beat number</li>
+<li><strong>MOD/XM/S3M</strong> - the pattern number</li>
+<li><strong>WAV/VOC</strong> - the sample number (eg. in a 22050 Hz sound, 22050 = 1 second)</li>
+<li><strong>OGG/MP3</strong> - milliseconds offset</li>
+</ul>
+<p>This property is read-only. If you want to change the current playback position within the audio file, use the <a href="AudioChannel.html#seek">AudioChannel.Seek</a> function.</p>
+<p>Example:</p>
+<pre><code>AudioChannel *channel = aExplosion.Play();
+Wait(40);
+channel.Seek(channel.Position + 1000);
+</code></pre>
+<p>will start playing the <em>aExplosion</em> audio clip, wait for a second, then seek it ahead one second (if it is OGG/MP3/WAV).</p>
+<p><em>Compatibility:</em> Supported by <strong>AGS 3.2.0</strong> and later versions.</p>
+<p><em>See Also:</em> <a href="AudioChannel.html#positionms">AudioChannel.PositionMs</a>, <a href="AudioChannel.html#seek">AudioChannel.Seek</a></p>
+<hr />
+</section>
+<section id="positionms" class="level3">
+<h3>PositionMs</h3>
+<pre><code>readonly int AudioChannel.PositionMs
+</code></pre>
+<p>Gets the current position of the audio playing on this channel, in milliseconds.</p>
+<p>This is supported by all file types except MIDI, and returns the current offset into the sound in milliseconds. MIDI files will always return 0.</p>
+<p>This property is read-only. If you want to change the current playback position within the audio file, use the <a href="AudioChannel.html#seek">AudioChannel.Seek</a> function.</p>
+<p>Example:</p>
+<pre><code>AudioChannel *channel = aExplosion.Play();
+Wait(40);
+Display(&quot;After 1 second, offset is %d ms.&quot;, channel.PositionMs);
+</code></pre>
+<p>will start playing the <em>aExplosion</em> audio clip, wait for a second, then display its position.</p>
+<p><em>Compatibility:</em> Supported by <strong>AGS 3.2.0</strong> and later versions.</p>
+<p><em>See Also:</em> <em>See Also:</em> <a href="AudioChannel.html#lengthms">AudioChannel.LengthMs</a>, <a href="AudioChannel.html#position">AudioChannel.Position</a></p>
+<hr />
+</section>
+<section id="volume" class="level3">
+<h3>Volume</h3>
+<p><em>(Formerly known as SetChannelVolume, which is now obsolete)</em><br> <em>(Formerly known as SetMusicVolume, which is now obsolete)</em></p>
+<pre><code>int AudioChannel.Volume
+</code></pre>
+<p>Gets/sets the volume of this audio channel, from 0 to 100. This allows you to dynamically adjust the volume of a playing sound.</p>
+<p>This command adjusts the volume of this channel relative to the other channels. It is still constrained within the overall volume, set by the System.Volume property.</p>
+<p><strong>NOTE:</strong> This command only affects the current sound being played on the channel. When a new audio clip starts playing on this channel, the volume will be set to the DefaultVolume of the new audio clip.</p>
+<p><strong>NOTE:</strong> The volume returned by this property is the channel's base volume, ie. it does not include the effects of any directional audio set with SetRoomLocation, or any temporary volume drop while speech is playing.</p>
+<p>Example:</p>
+<pre><code>AudioChannel *channel = aExplosion.Play();
+Wait(40);
+channel.Volume = 20;
+</code></pre>
+<p>will start playing the <em>aExplosion</em> audio clip, wait for a second, then reduce its volume.</p>
+<p><em>Compatibility:</em> Supported by <strong>AGS 3.2.0</strong> and later versions.</p>
+<p><em>See Also:</em> <a href="AudioChannel.html#setroomlocation">AudioChannel.SetRoomLocation</a>, <a href="Multimedia.html#setaudiotypevolume">Game.SetAudioTypeVolume</a>, <a href="System.html#volume">System.Volume</a></p>
+</section>
+</section>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <script type="text/javascript" src="js/search.js"></script>
+</body>
+</html>

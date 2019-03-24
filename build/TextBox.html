@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>TextBox functions and properties</title>
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/milligram.min.css" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+
+  <div class="container">
+    <nav class="navigation">
+      <section class="container">
+        <div class="float-left">
+          <a class="navigation-title" href="index.html">
+            <img src="static/logo.png" alt="AGS Manual">
+            <h1 class="title">AGS Manual</h1>
+          </a>
+        </div>
+        <div class="float-right">
+          <ul class="navigation-list float-right">
+            <li class="navigation-item">
+              <input type="search" id="search_input">
+            </li>
+          </ul>
+        </div>
+      </section>
+    </nav>
+
+    <header>
+      <ul id="search_results">
+      </ul>
+    </header>
+
+    <section>
+      <div class="row">
+        <div class="column">
+          <nav id="TOC">
+            <ul>
+              <li><a href="genindex.html">Index</a></li>
+            </ul>
+<ul>
+<li><a href="#textbox-functions-and-properties">TextBox functions and properties</a><ul>
+<li><a href="#font">Font</a></li>
+<li><a href="#text">Text</a></li>
+<li><a href="#textcolor">TextColor</a></li>
+</ul></li>
+</ul>
+          </nav>
+        </div>
+        <div class="column column-75">
+<section id="textbox-functions-and-properties" class="level2">
+<h2>TextBox functions and properties</h2>
+<section id="font" class="level3">
+<h3>Font</h3>
+<p><em>(Formerly known as SetTextBoxFont, which is now obsolete)</em></p>
+<pre><code>FontType TextBox.Font
+</code></pre>
+<p>Gets/sets the font used by the specified text box. This might be useful if you need a player input text box to use a different font with foreign language translations, for example.</p>
+<p>Example:</p>
+<pre><code>txtUserInput.Font = eFontNormal;
+</code></pre>
+<p>will change the <em>txtUserInput</em> text box to use Font "Normal".</p>
+<p><em>See Also:</em> <a href="Label.html#font">Label.Font</a>, <a href="TextBox.html#text">TextBox.Text</a></p>
+<hr />
+</section>
+<section id="text" class="level3">
+<h3>Text</h3>
+<p><em>(Formerly known as GetTextBoxText, which is now obsolete)</em><br> <em>(Formerly known as SetTextBoxText, which is now obsolete)</em><br> <em>(Formerly known as TextBox.GetText, which is now obsolete)</em><br> <em>(Formerly known as TextBox.SetText, which is now obsolete)</em></p>
+<pre><code>String TextBox.Text;
+</code></pre>
+<p>Gets/sets the text box contents. This might be useful to reset the text box to blank after the user has typed something in, or to fill in a default value.</p>
+<p>Example:</p>
+<pre><code>txtUserInput.Text = &quot;&quot;;
+</code></pre>
+<p>will clear the txtUserInput text box.</p>
+<p><em>See Also:</em> <a href="TextBox.html#font">TextBox.Font</a>, <a href="String.html#compareto">String.CompareTo</a>, <a href="Label.html#text">Label.Text</a></p>
+<hr />
+</section>
+<section id="textcolor" class="level3">
+<h3>TextColor</h3>
+<pre><code>int TextBox.TextColor;
+</code></pre>
+<p>Gets/sets the text colour used to draw the text box. This affects both the text in the text box, and also the text box's border.</p>
+<p>Example:</p>
+<pre><code>txtInput.TextColor = 14;
+</code></pre>
+<p>will change text box 'txtInput' to have yellow text.</p>
+<p><em>Compatibility:</em> Supported by <strong>AGS 3.1.0</strong> and later versions.</p>
+<p><em>See Also:</em> <a href="TextBox.html#text">TextBox.Text</a></p>
+</section>
+</section>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <script type="text/javascript" src="js/search.js"></script>
+</body>
+</html>

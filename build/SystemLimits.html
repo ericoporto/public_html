@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>System limits</title>
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/milligram.min.css" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+
+  <div class="container">
+    <nav class="navigation">
+      <section class="container">
+        <div class="float-left">
+          <a class="navigation-title" href="index.html">
+            <img src="static/logo.png" alt="AGS Manual">
+            <h1 class="title">AGS Manual</h1>
+          </a>
+        </div>
+        <div class="float-right">
+          <ul class="navigation-list float-right">
+            <li class="navigation-item">
+              <input type="search" id="search_input">
+            </li>
+          </ul>
+        </div>
+      </section>
+    </nav>
+
+    <header>
+      <ul id="search_results">
+      </ul>
+    </header>
+
+    <section>
+      <div class="row">
+        <div class="column">
+          <nav id="TOC">
+            <ul>
+              <li><a href="genindex.html">Index</a></li>
+            </ul>
+<ul>
+<li><a href="#system-limits">System limits</a></li>
+</ul>
+          </nav>
+        </div>
+        <div class="column column-75">
+<section id="system-limits" class="level2">
+<h2>System limits</h2>
+<p>This section tells you the maximums for various parts of the system. If you have been wondering "How many rooms can I have?" or something similar, chances are this section will answer it.</p>
+<p>There are maximum...</p>
+<ul>
+<li>40 objects per room</li>
+<li>299 state-saving rooms per game</li>
+<li>300 inventory items</li>
+<li>30000 imported sprites</li>
+<li>30 options per dialog topic</li>
+<li>20 timers</li>
+<li>20 screen overlays at a time</li>
+<li>5 background frames per room</li>
+<li>20 mouse cursors</li>
+<li>8 audio channels</li>
+<li>100 local messages per room (excluding script)</li>
+<li>30 fonts</li>
+<li>150 lines of text in a listbox</li>
+<li>unlimited words in the text parser dictionary</li>
+<li>unlimited characters</li>
+<li>unlimited dialog topics</li>
+<li>unlimited views</li>
+<li>unlimited GUIs</li>
+<li>unlimited controls on each GUI</li>
+<li>unlimited loops per view</li>
+<li>unlimited frames per loop</li>
+<li>unlimited custom properties</li>
+</ul>
+<p>Some additional limits</p>
+<ul>
+<li><p>You should be able to have up to 15 parameters to a function.</p></li>
+<li><p>To ensure the pathfinder always works, your walkable areas should always be at least 3 pixels wide.</p></li>
+<li><p>You'll get an error if you define over 4 KB's worth of variables inside a function.</p></li>
+<li><p>AGS currently allows the call stack to be 50 levels deep, so if you have a recursive function that calls itself more often you'll get the "call stack overflow" error. Additionally, the stack size is set at 4 KB so if the recursive function declares a lot of local variables you could reach the limit that way, too.</p></li>
+<li><p>There is a total overall limit on the number of functions that can be exported by all plugins added together, which in theory it would be possible for a single plugin to exceed. It's in the region of a couple of hundred though, so it shouldn't be an issue. It wouldn't be too difficult to increase, if the need arose.</p></li>
+</ul>
+<p>We are working on removing existing limitations in the AGS, so some of the remaining restrictions might be loosened or eliminated in the following updates.</p>
+</section>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <script type="text/javascript" src="js/search.js"></script>
+</body>
+</html>

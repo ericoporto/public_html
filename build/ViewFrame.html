@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ViewFrame functions and properties</title>
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/milligram.min.css" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+
+  <div class="container">
+    <nav class="navigation">
+      <section class="container">
+        <div class="float-left">
+          <a class="navigation-title" href="index.html">
+            <img src="static/logo.png" alt="AGS Manual">
+            <h1 class="title">AGS Manual</h1>
+          </a>
+        </div>
+        <div class="float-right">
+          <ul class="navigation-list float-right">
+            <li class="navigation-item">
+              <input type="search" id="search_input">
+            </li>
+          </ul>
+        </div>
+      </section>
+    </nav>
+
+    <header>
+      <ul id="search_results">
+      </ul>
+    </header>
+
+    <section>
+      <div class="row">
+        <div class="column">
+          <nav id="TOC">
+            <ul>
+              <li><a href="genindex.html">Index</a></li>
+            </ul>
+<ul>
+<li><a href="#viewframe-functions-and-properties">ViewFrame functions and properties</a><ul>
+<li><a href="#flipped">Flipped</a></li>
+<li><a href="#frame">Frame</a></li>
+<li><a href="#graphic">Graphic</a></li>
+<li><a href="#linkedaudio">LinkedAudio</a></li>
+<li><a href="#loop">Loop</a></li>
+<li><a href="#speed">Speed</a></li>
+<li><a href="#view">View</a></li>
+</ul></li>
+</ul>
+          </nav>
+        </div>
+        <div class="column column-75">
+<section id="viewframe-functions-and-properties" class="level2">
+<h2>ViewFrame functions and properties</h2>
+<section id="flipped" class="level3">
+<h3>Flipped</h3>
+<p><em>(Formerly part of GetGameParameter, which is now obsolete)</em></p>
+<pre><code>readonly bool ViewFrame.Flipped
+</code></pre>
+<p>Gets whether the frame was set to Flipped in the editor.</p>
+<p>Example:</p>
+<pre><code>ViewFrame *frame = Game.GetViewFrame(WALKING, 2, 4);
+if (frame.Flipped) {
+  Display(&quot;This frame is flipped&quot;);
+}
+else {
+  Display(&quot;This frame is not flipped&quot;);
+}
+</code></pre>
+<p><em>See Also:</em> <a href="Game.html#getviewframe">Game.GetViewFrame</a>, <a href="ViewFrame.html#graphic">ViewFrame.Graphic</a></p>
+<hr />
+</section>
+<section id="frame" class="level3">
+<h3>Frame</h3>
+<p><em>(Formerly part of GetGameParameter, which is now obsolete)</em></p>
+<pre><code>readonly int ViewFrame.Frame
+</code></pre>
+<p>Returns the frame number represented by this ViewFrame.</p>
+<p>Example:</p>
+<pre><code>ViewFrame *frame = Game.GetViewFrame(WALKING, 2, 4);
+Display(&quot;This ViewFrame is view %d, loop %d, frame %d&quot;,
+  frame.View, frame.Loop, frame.Frame);
+</code></pre>
+<p><em>See Also:</em> <a href="Game.html#getviewframe">Game.GetViewFrame</a>, <a href="ViewFrame.html#loop">ViewFrame.Loop</a>, <a href="ViewFrame.html#view">ViewFrame.View</a></p>
+<hr />
+</section>
+<section id="graphic" class="level3">
+<h3>Graphic</h3>
+<p><em>(Formerly part of GetGameParameter, which is now obsolete)</em></p>
+<pre><code>int ViewFrame.Graphic
+</code></pre>
+<p>Gets/sets the sprite slot number that this view frame displays.</p>
+<p>Example:</p>
+<pre><code>ViewFrame *frame = Game.GetViewFrame(WALKING, 2, 4);
+Display(&quot;This frame uses sprite %d&quot;, frame.Graphic);
+</code></pre>
+<p><em>See Also:</em> <a href="Game.html#getviewframe">Game.GetViewFrame</a></p>
+<hr />
+</section>
+<section id="linkedaudio" class="level3">
+<h3>LinkedAudio</h3>
+<p><em>(Formerly known as ViewFrame.Sound, which is now obsolete)</em><br> <em>(Formerly known as SetFrameSound, which is now obsolete)</em><br> <em>(Formerly part of GetGameParameter, which is now obsolete)</em></p>
+<pre><code>AudioClip* ViewFrame.LinkedAudio
+</code></pre>
+<p>Gets/sets the audio clip that plays when this frame comes around in animations.</p>
+<p>If there is no linked sound, this should be <em>null</em>.</p>
+<p>Example:</p>
+<pre><code>ViewFrame *frame = Game.GetViewFrame(WALKING, 2, 4);
+if (frame.LinkedAudio == null)
+{
+  Display(&quot;This frame has no frame-linked audio.&quot;);
+}
+else
+{
+  frame.LinkedAudio.Play();
+}
+</code></pre>
+<p>checks view WALKING to see if frame 4 in loop 2 has a linked audio clip; if so, plays it.</p>
+<p><em>Compatibility:</em> Supported by <strong>AGS 3.2.0</strong> and later versions.</p>
+<p><em>See Also:</em> <a href="Game.html#getviewframe">Game.GetViewFrame</a></p>
+<hr />
+</section>
+<section id="loop" class="level3">
+<h3>Loop</h3>
+<p><em>(Formerly part of GetGameParameter, which is now obsolete)</em></p>
+<pre><code>readonly int ViewFrame.Loop
+</code></pre>
+<p>Returns the loop number represented by this ViewFrame.</p>
+<p>Example:</p>
+<pre><code>ViewFrame *frame = Game.GetViewFrame(WALKING, 2, 4);
+Display(&quot;This ViewFrame is view %d, loop %d, frame %d&quot;,
+  frame.View, frame.Loop, frame.Frame);
+</code></pre>
+<p><em>See Also:</em> <a href="Game.html#getviewframe">Game.GetViewFrame</a>, <a href="ViewFrame.html#frame">ViewFrame.Frame</a>, <a href="ViewFrame.html#view">ViewFrame.View</a></p>
+<hr />
+</section>
+<section id="speed" class="level3">
+<h3>Speed</h3>
+<p><em>(Formerly part of GetGameParameter, which is now obsolete)</em></p>
+<pre><code>readonly int ViewFrame.Speed
+</code></pre>
+<p>Gets the speed setting of the view frame. This is 0 by default but may have been changed in the AGS Editor.</p>
+<p>Example:</p>
+<pre><code>ViewFrame *frame = Game.GetViewFrame(WALKING, 2, 4);
+Display(&quot;This frame has speed %d.&quot;, frame.Speed);
+</code></pre>
+<p><em>See Also:</em> <a href="Game.html#getviewframe">Game.GetViewFrame</a></p>
+<hr />
+</section>
+<section id="view" class="level3">
+<h3>View</h3>
+<p><em>(Formerly part of GetGameParameter, which is now obsolete)</em></p>
+<pre><code>readonly int ViewFrame.View
+</code></pre>
+<p>Returns the view number represented by this ViewFrame.</p>
+<p>Example:</p>
+<pre><code>ViewFrame *frame = Game.GetViewFrame(WALKING, 2, 4);
+Display(&quot;This ViewFrame is view %d, loop %d, frame %d&quot;,
+  frame.View, frame.Loop, frame.Frame);
+</code></pre>
+<p><em>See Also:</em> <a href="Game.html#getviewframe">Game.GetViewFrame</a>, <a href="ViewFrame.html#loop">ViewFrame.Loop</a>, <a href="ViewFrame.html#frame">ViewFrame.Frame</a></p>
+</section>
+</section>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <script type="text/javascript" src="js/search.js"></script>
+</body>
+</html>

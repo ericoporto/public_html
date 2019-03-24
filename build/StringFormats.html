@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>String formatting</title>
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/milligram.min.css" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+
+  <div class="container">
+    <nav class="navigation">
+      <section class="container">
+        <div class="float-left">
+          <a class="navigation-title" href="index.html">
+            <img src="static/logo.png" alt="AGS Manual">
+            <h1 class="title">AGS Manual</h1>
+          </a>
+        </div>
+        <div class="float-right">
+          <ul class="navigation-list float-right">
+            <li class="navigation-item">
+              <input type="search" id="search_input">
+            </li>
+          </ul>
+        </div>
+      </section>
+    </nav>
+
+    <header>
+      <ul id="search_results">
+      </ul>
+    </header>
+
+    <section>
+      <div class="row">
+        <div class="column">
+          <nav id="TOC">
+            <ul>
+              <li><a href="genindex.html">Index</a></li>
+            </ul>
+<ul>
+<li><a href="#string-formatting">String formatting</a></li>
+</ul>
+          </nav>
+        </div>
+        <div class="column column-75">
+<section id="string-formatting" class="level2">
+<h2>String formatting</h2>
+<p>You will find many times in your game when you need to create a string based on the values of variables, and functions like <a href="DisplayFunctions.html#display">Display</a> and <a href="String.html#format">String.Format</a> allow you to do so.</p>
+<p>AGS uses printf-style argument formatting (used by the C language). This means that you intersperse your text with special codes to insert a variable's value. These special codes begin with a percent sign, and then specify the variable type. The actual variables that you want to display are then listed afterwards.</p>
+<p>Some examples of the special codes you can use are as follows:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>%d</td>
+<td>Integer (use to display value of int and short variables)</td>
+</tr>
+<tr class="even">
+<td>%0Xd</td>
+<td>Integer left-padded with up to X zeros</td>
+</tr>
+<tr class="odd">
+<td>%s</td>
+<td>String (use to display string variables)</td>
+</tr>
+<tr class="even">
+<td>%c</td>
+<td>Character (displays the ASCII character of the supplied value)</td>
+</tr>
+<tr class="odd">
+<td>%f</td>
+<td>Float (displays a float variable)</td>
+</tr>
+<tr class="even">
+<td>%.Xf</td>
+<td>Float to X decimal places</td>
+</tr>
+<tr class="odd">
+<td>%%</td>
+<td>Display the percent character (ie. no variable)</td>
+</tr>
+<tr class="even">
+<td>[</td>
+<td>Inserts a new line into the message</td>
+</tr>
+</tbody>
+</table>
+<p>Some examples:</p>
+<pre><code>int life = 42;
+float twoPi = Maths.Pi * 2.0;
+String message = &quot;A string variable&quot;;
+
+Display(&quot;A normal string with no variables.&quot;);
+Display(&quot;The meaning of life is %d.&quot;, life);
+Display(&quot;The meaning of life in 3 digits is %03d.&quot;, life);
+Display(&quot;2 times Pi is %f.&quot;, twoPi);
+Display(&quot;The message says: %s.&quot;, message);
+</code></pre>
+<p>would display:</p>
+<pre><code>A normal string with no variables.
+The meaning of life is 42.
+The meaning of life in 3 digits is 042.
+2 times Pi is 6.283186.
+The message says: A string variable.
+</code></pre>
+<p>You can display as many variables as you like in one line:</p>
+<pre><code>int life = 42;
+float twoPi = Maths.Pi * 2.0;
+
+Display(&quot;Life is %d, 2 x Pi = %f, and my dinner is %s.&quot;, life, twoPi, &quot;awful&quot;);
+</code></pre>
+<p>but, <strong>be very careful</strong> that you supply the right number of variables to correspond with the tags you use in the text. If you don't supply enough variables, your game could crash.</p>
+</section>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <script type="text/javascript" src="js/search.js"></script>
+</body>
+</html>

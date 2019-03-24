@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Slider properties</title>
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/milligram.min.css" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+
+  <div class="container">
+    <nav class="navigation">
+      <section class="container">
+        <div class="float-left">
+          <a class="navigation-title" href="index.html">
+            <img src="static/logo.png" alt="AGS Manual">
+            <h1 class="title">AGS Manual</h1>
+          </a>
+        </div>
+        <div class="float-right">
+          <ul class="navigation-list float-right">
+            <li class="navigation-item">
+              <input type="search" id="search_input">
+            </li>
+          </ul>
+        </div>
+      </section>
+    </nav>
+
+    <header>
+      <ul id="search_results">
+      </ul>
+    </header>
+
+    <section>
+      <div class="row">
+        <div class="column">
+          <nav id="TOC">
+            <ul>
+              <li><a href="genindex.html">Index</a></li>
+            </ul>
+<ul>
+<li><a href="#slider-properties">Slider properties</a><ul>
+<li><a href="#backgroundgraphic">BackgroundGraphic</a></li>
+<li><a href="#handlegraphic">HandleGraphic</a></li>
+<li><a href="#handleoffset">HandleOffset</a></li>
+<li><a href="#max">Max</a></li>
+<li><a href="#min">Min</a></li>
+<li><a href="#value">Value</a></li>
+</ul></li>
+</ul>
+          </nav>
+        </div>
+        <div class="column column-75">
+<section id="slider-properties" class="level2">
+<h2>Slider properties</h2>
+<section id="backgroundgraphic" class="level3">
+<h3>BackgroundGraphic</h3>
+<pre><code>int Slider.BackgroundGraphic;
+</code></pre>
+<p>Gets/sets the sprite used to draw the slider background. This image is tiled along the length of the slider.</p>
+<p>The background graphic can be set to 0, which will draw the default grey slider background.</p>
+<p>Example:</p>
+<pre><code>Display(&quot;sldHealth&#39;s background is sprite %d&quot;, sldHealth.BackgroundGraphic);
+</code></pre>
+<p>displays the <em>sldHealth</em> slider's background image</p>
+<p><em>Compatibility:</em> Supported by <strong>AGS 3.1.0</strong> and later versions.</p>
+<p><em>See Also:</em> <a href="Slider.html#handlegraphic">Slider.HandleGraphic</a></p>
+<hr />
+</section>
+<section id="handlegraphic" class="level3">
+<h3>HandleGraphic</h3>
+<pre><code>int Slider.HandleGraphic;
+</code></pre>
+<p>Gets/sets the sprite used to draw the handle on the slider. The handle represents the slider's current position, and can be dragged around by the player.</p>
+<p>The handle graphic can be set to 0, which will draw the default grey handle.</p>
+<p>Example:</p>
+<pre><code>Display(&quot;sldHealth&#39;s handle is sprite %d&quot;, sldHealth.HandleGraphic);
+</code></pre>
+<p>displays the <em>sldHealth</em> slider's handle image</p>
+<p><em>Compatibility:</em> Supported by <strong>AGS 3.1.0</strong> and later versions.</p>
+<p><em>See Also:</em> <a href="Slider.html#backgroundgraphic">Slider.BackgroundGraphic</a>, <a href="Slider.html#handleoffset">Slider.HandleOffset</a></p>
+<hr />
+</section>
+<section id="handleoffset" class="level3">
+<h3>HandleOffset</h3>
+<pre><code>int Slider.HandleOffset;
+</code></pre>
+<p>Gets/sets the offset at which the handle image is drawn. This value is initially set up in the editor.</p>
+<p>Example:</p>
+<pre><code>sldHealth.HandleOffset = 2;
+</code></pre>
+<p>sets the <em>sldHealth</em> slider's handle to be drawn an extra 2 pixels to the right.</p>
+<p><em>Compatibility:</em> Supported by <strong>AGS 3.1.0</strong> and later versions.</p>
+<p><em>See Also:</em> <a href="Slider.html#handlegraphic">Slider.HandleGraphic</a></p>
+<hr />
+</section>
+<section id="max" class="level3">
+<h3>Max</h3>
+<pre><code>int Slider.Max;
+</code></pre>
+<p>Gets/sets the maximum value of the specified GUI slider.</p>
+<p>When changing the maximum, the slider's Value will be adjusted if necessary so that it lies within the Min - Max range.</p>
+<p>An error occurs if you try to set the Max to a lower value than the Min.</p>
+<p>Example:</p>
+<pre><code>sldHealth.Max = 200;
+</code></pre>
+<p>sets the maximum value of the <em>sldHealth</em> slider to 200.</p>
+<p><em>See Also:</em> <a href="Slider.html#min">Slider.Min</a>, <a href="Slider.html#value">Slider.Value</a></p>
+<hr />
+</section>
+<section id="min" class="level3">
+<h3>Min</h3>
+<pre><code>int Slider.Min;
+</code></pre>
+<p>Gets/sets the minimum value of the specified GUI slider.</p>
+<p>When changing the minimum, the slider's Value will be adjusted if necessary so that it lies within the Min - Max range.</p>
+<p>An error occurs if you try to set the Min to a higher value than the Max.</p>
+<p>Example:</p>
+<pre><code>sldHealth.Min = 0;
+</code></pre>
+<p>sets the minimum value of the <em>sldHealth</em> slider to 0.</p>
+<p><em>See Also:</em> <a href="Slider.html#max">Slider.Max</a>, <a href="Slider.html#value">Slider.Value</a></p>
+<hr />
+</section>
+<section id="value" class="level3">
+<h3>Value</h3>
+<p><em>(Formerly known as GetSliderValue, which is now obsolete)</em><br> <em>(Formerly known as SetSliderValue, which is now obsolete)</em></p>
+<pre><code>int Slider.Value;
+</code></pre>
+<p>Gets/sets the value of the specified GUI slider. You would usually use this in the slider's OnChange event handler to find out what value the player has changed the slider to, in order to process their command.</p>
+<p>When setting the value, the new value must lie between the MIN and MAX settings for the slider, as set up in the GUI editor.</p>
+<p>Example:</p>
+<pre><code>System.Volume = sldVolume.Value;
+</code></pre>
+<p>will set the audio volume to the value of the slider <em>sldVolume</em>.</p>
+<p><em>See Also:</em> <a href="Label.html#text">Label.Text</a></p>
+</section>
+</section>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <script type="text/javascript" src="js/search.js"></script>
+</body>
+</html>

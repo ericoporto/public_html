@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>DateTime functions and properties</title>
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/milligram.min.css" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+
+  <div class="container">
+    <nav class="navigation">
+      <section class="container">
+        <div class="float-left">
+          <a class="navigation-title" href="index.html">
+            <img src="static/logo.png" alt="AGS Manual">
+            <h1 class="title">AGS Manual</h1>
+          </a>
+        </div>
+        <div class="float-right">
+          <ul class="navigation-list float-right">
+            <li class="navigation-item">
+              <input type="search" id="search_input">
+            </li>
+          </ul>
+        </div>
+      </section>
+    </nav>
+
+    <header>
+      <ul id="search_results">
+      </ul>
+    </header>
+
+    <section>
+      <div class="row">
+        <div class="column">
+          <nav id="TOC">
+            <ul>
+              <li><a href="genindex.html">Index</a></li>
+            </ul>
+<ul>
+<li><a href="#datetime-functions-and-properties">DateTime functions and properties</a><ul>
+<li><a href="#now">Now</a></li>
+<li><a href="#dayofmonth">DayOfMonth</a></li>
+<li><a href="#hour">Hour</a></li>
+<li><a href="#minute">Minute</a></li>
+<li><a href="#month">Month</a></li>
+<li><a href="#rawtime">RawTime</a></li>
+<li><a href="#second">Second</a></li>
+<li><a href="#year">Year</a></li>
+</ul></li>
+</ul>
+          </nav>
+        </div>
+        <div class="column column-75">
+<section id="datetime-functions-and-properties" class="level2">
+<h2>DateTime functions and properties</h2>
+<section id="now" class="level3">
+<h3>Now</h3>
+<p><em>(Formerly known as GetTime, which is now obsolete)</em></p>
+<pre><code>readonly static DateTime* DateTime.Now;
+</code></pre>
+<p>Gets the current system time. You could use this for timing a loop, or for effects like telling the player to go to bed, and so on.</p>
+<p>A <em>DateTime</em> object is returned, which contains various properties that you can use.</p>
+<p>Note that the DateTime object that you get will not be kept up to date with the current time; it will remain static with the time at which you called DateTime.Now.</p>
+<p>Example:</p>
+<pre><code>DateTime *dt = DateTime.Now;
+Display(&quot;The date is: %02d/%02d/%04d&quot;, dt.DayOfMonth, dt.Month, dt.Year);
+Display(&quot;The time is: %02d:%02d:%02d&quot;, dt.Hour, dt.Minute, dt.Second);
+</code></pre>
+<p>will display the current date and time in 24-hour format</p>
+<p><em>See Also:</em> <a href="DateTime.html#dayofmonth">DateTime.DayOfMonth</a>, <a href="DateTime.html#hour">DateTime.Hour</a>, <a href="DateTime.html#minute">DateTime.Minute</a>, <a href="DateTime.html#month">DateTime.Month</a>, <a href="DateTime.html#rawtime">DateTime.RawTime</a>, <a href="DateTime.html#second">DateTime.Second</a>, <a href="DateTime.html#year">DateTime.Year</a></p>
+<hr />
+</section>
+<section id="dayofmonth" class="level3">
+<h3>DayOfMonth</h3>
+<pre><code>readonly int DateTime.DayOfMonth;
+</code></pre>
+<p>Gets the day of the month represented by the DateTime object. This will be from 1 to 31, representing the current day within the month.</p>
+<p>Example: For an example, see <a href="DateTime.html#now">DateTime.Now</a>.</p>
+<p><em>See Also:</em> <a href="DateTime.html#now">DateTime.Now</a></p>
+<hr />
+</section>
+<section id="hour" class="level3">
+<h3>Hour</h3>
+<pre><code>readonly int DateTime.Hour;
+</code></pre>
+<p>Gets the hour represented by the DateTime object. This will be from 0 to 23, representing the hour in 24-hour format.</p>
+<p>Example: For an example, see <a href="DateTime.html#now">DateTime.Now</a>.</p>
+<p><em>See Also:</em> <a href="DateTime.html#now">DateTime.Now</a></p>
+<hr />
+</section>
+<section id="minute" class="level3">
+<h3>Minute</h3>
+<pre><code>readonly int DateTime.Minute;
+</code></pre>
+<p>Gets the minute represented by the DateTime object. This will be from 0 to 59, representing the minute in 24-hour format.</p>
+<p>Example: For an example, see <a href="DateTime.html#now">DateTime.Now</a>.</p>
+<p><em>See Also:</em> <a href="DateTime.html#now">DateTime.Now</a></p>
+<hr />
+</section>
+<section id="month" class="level3">
+<h3>Month</h3>
+<pre><code>readonly int DateTime.Month;
+</code></pre>
+<p>Gets the month represented by the DateTime object. This will be from 1 to 12, representing the month of the year.</p>
+<p>Example: For an example, see <a href="DateTime.html#now">DateTime.Now</a>.</p>
+<p><em>See Also:</em> <a href="DateTime.html#now">DateTime.Now</a></p>
+<hr />
+</section>
+<section id="rawtime" class="level3">
+<h3>RawTime</h3>
+<p><em>(Formerly known as GetRawTime, which is now obsolete)</em></p>
+<pre><code>readonly int DateTime.RawTime;
+</code></pre>
+<p>This function returns the raw system time, as the number of seconds since January 1970. While this value is not useful in itself, you can use it to calculate time differences by getting the value at the start of the game, for example, and then getting the value later on, and the difference between the two is how much time has elapsed.</p>
+<p><strong>NOTE:</strong> Because this accesses the real-time clock on the users' system, it is not a good idea to use this for long term timing tasks, since if the user saves the game and then restores it later, the Time value returned by this function will obviously include the difference when they were not playing.</p>
+<p>Example:</p>
+<pre><code>DateTime *dt = DateTime.Now;
+int start_time = dt.RawTime;
+Wait(120);
+dt = DateTime.Now;
+Display(&quot;After the wait it is now %d seconds later.&quot;, dt.RawTime - start_time);
+</code></pre>
+<p>should display that 3 seconds have elapsed.</p>
+<p><em>See Also:</em> <a href="DateTime.html#now">DateTime.Now</a>, <a href="Game.html#settimer">SetTimer</a></p>
+<hr />
+</section>
+<section id="second" class="level3">
+<h3>Second</h3>
+<pre><code>readonly int DateTime.Second;
+</code></pre>
+<p>Gets the second represented by the DateTime object. This will be from 0 to 59, representing the second.</p>
+<p>Example: For an example, see <a href="DateTime.html#now">DateTime.Now</a>.</p>
+<p><em>See Also:</em> <a href="DateTime.html#now">DateTime.Now</a></p>
+<hr />
+</section>
+<section id="year" class="level3">
+<h3>Year</h3>
+<pre><code>readonly int DateTime.Year;
+</code></pre>
+<p>Gets the year represented by the DateTime object. This is the full year, for example <em>2005</em>.</p>
+<p>Example: For an example, see <a href="DateTime.html#now">DateTime.Now</a>.</p>
+<p><em>See Also:</em> <a href="DateTime.html#now">DateTime.Now</a></p>
+</section>
+</section>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <script type="text/javascript" src="js/search.js"></script>
+</body>
+</html>

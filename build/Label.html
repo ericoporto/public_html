@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Label functions and properties</title>
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/milligram.min.css" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+
+  <div class="container">
+    <nav class="navigation">
+      <section class="container">
+        <div class="float-left">
+          <a class="navigation-title" href="index.html">
+            <img src="static/logo.png" alt="AGS Manual">
+            <h1 class="title">AGS Manual</h1>
+          </a>
+        </div>
+        <div class="float-right">
+          <ul class="navigation-list float-right">
+            <li class="navigation-item">
+              <input type="search" id="search_input">
+            </li>
+          </ul>
+        </div>
+      </section>
+    </nav>
+
+    <header>
+      <ul id="search_results">
+      </ul>
+    </header>
+
+    <section>
+      <div class="row">
+        <div class="column">
+          <nav id="TOC">
+            <ul>
+              <li><a href="genindex.html">Index</a></li>
+            </ul>
+<ul>
+<li><a href="#label-functions-and-properties">Label functions and properties</a><ul>
+<li><a href="#font">Font</a></li>
+<li><a href="#text">Text</a></li>
+<li><a href="#textcolor">TextColor</a></li>
+</ul></li>
+</ul>
+          </nav>
+        </div>
+        <div class="column column-75">
+<section id="label-functions-and-properties" class="level2">
+<h2>Label functions and properties</h2>
+<section id="font" class="level3">
+<h3>Font</h3>
+<p><em>(Formerly known as SetLabelFont, which is now obsolete)</em></p>
+<pre><code>FontType Label.Font;
+</code></pre>
+<p>Gets/sets the font used to display the label's text. This is useful if you have a standard SCI font for your English version, but want to change to a TTF font for foreign language versions.</p>
+<p>Example:</p>
+<pre><code>if (IsTranslationAvailable()) {
+  lblStatus.Font = eFontForeign;
+}
+</code></pre>
+<p>will change label 'lblStatus' to use font "Foreign" if a game translation is in use.</p>
+<p><em>See Also:</em> <a href="Game.html#istranslationavailable">IsTranslationAvailable</a>, <a href="Label.html#text">Label.Text</a>, <a href="TextBox.html#font">TextBox.Font</a></p>
+<hr />
+</section>
+<section id="text" class="level3">
+<h3>Text</h3>
+<p><em>(Formerly known as SetLabelText, which is now obsolete)</em><br> <em>(Formerly known as Label.GetText, which is now obsolete)</em><br> <em>(Formerly known as Label.SetText, which is now obsolete)</em></p>
+<pre><code>String Label.Text;
+</code></pre>
+<p>Gets/sets the text displayed in the specified label. This allows you to change the text during the game, for example to create a Lucasarts-style status line.</p>
+<p>Example:</p>
+<pre><code>lblStatus.Text = Game.GetLocationName(mouse.x, mouse.y);
+</code></pre>
+<p>will display the name of the location the cursor is over on label 'lblStatus'</p>
+<p><em>See Also:</em> <a href="Button.html#normalgraphic">Button.NormalGraphic</a>, <a href="Button.html#text">Button.Text</a>, <a href="Label.html#textcolor">Label.TextColor</a>, <a href="Label.html#font">Label.Font</a></p>
+<hr />
+</section>
+<section id="textcolor" class="level3">
+<h3>TextColor</h3>
+<p><em>(Formerly known as SetLabelColor, which is now obsolete)</em></p>
+<pre><code>int Label.TextColor;
+</code></pre>
+<p>Gets/sets the text colour used to display the label's text.</p>
+<p>Example:</p>
+<pre><code>lblStatus.TextColor = 14;
+</code></pre>
+<p>will change label 'lblStatus' to have yellow text.</p>
+<p><em>See Also:</em> <a href="Label.html#font">Label.Font</a>, <a href="Label.html#text">Label.Text</a></p>
+</section>
+</section>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <script type="text/javascript" src="js/search.js"></script>
+</body>
+</html>

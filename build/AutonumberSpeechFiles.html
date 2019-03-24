@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Auto-number speech files</title>
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/milligram.min.css" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+
+  <div class="container">
+    <nav class="navigation">
+      <section class="container">
+        <div class="float-left">
+          <a class="navigation-title" href="index.html">
+            <img src="static/logo.png" alt="AGS Manual">
+            <h1 class="title">AGS Manual</h1>
+          </a>
+        </div>
+        <div class="float-right">
+          <ul class="navigation-list float-right">
+            <li class="navigation-item">
+              <input type="search" id="search_input">
+            </li>
+          </ul>
+        </div>
+      </section>
+    </nav>
+
+    <header>
+      <ul id="search_results">
+      </ul>
+    </header>
+
+    <section>
+      <div class="row">
+        <div class="column">
+          <nav id="TOC">
+            <ul>
+              <li><a href="genindex.html">Index</a></li>
+            </ul>
+<ul>
+<li><a href="#auto-number-speech-files">Auto-number speech files</a></li>
+</ul>
+          </nav>
+        </div>
+        <div class="column column-75">
+<section id="auto-number-speech-files" class="level2">
+<h2>Auto-number speech files</h2>
+<p>If you've already made your game, and then you decide you want a voice pack to go with it, the thought of manually adding speech numbers to every line of speech in the game is rather daunting. But never fear, this is where the Auto-number Speech Files feature comes in.</p>
+<p>If you select this option, then it will go through all the speech lines in the game and add a&amp;NUM to the start of them. A summary of the results is written to a file called SPEECHREF.TXT in the game folder, so that you can easily see what file is what when recording the speech.</p>
+<p>The following types of message are auto-numbered. If one of the messages already has a speech number, it will be overwritten:</p>
+<ul>
+<li>room messages set to be displayed as speech</li>
+<li>dialog script messages</li>
+<li>dialog options (if "Say" is selected for the option)</li>
+<li>Say commands in scripts</li>
+</ul>
+</section>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <script type="text/javascript" src="js/search.js"></script>
+</body>
+</html>

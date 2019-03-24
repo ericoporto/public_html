@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Sierra-style template</title>
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/milligram.min.css" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+
+  <div class="container">
+    <nav class="navigation">
+      <section class="container">
+        <div class="float-left">
+          <a class="navigation-title" href="index.html">
+            <img src="static/logo.png" alt="AGS Manual">
+            <h1 class="title">AGS Manual</h1>
+          </a>
+        </div>
+        <div class="float-right">
+          <ul class="navigation-list float-right">
+            <li class="navigation-item">
+              <input type="search" id="search_input">
+            </li>
+          </ul>
+        </div>
+      </section>
+    </nav>
+
+    <header>
+      <ul id="search_results">
+      </ul>
+    </header>
+
+    <section>
+      <div class="row">
+        <div class="column">
+          <nav id="TOC">
+            <ul>
+              <li><a href="genindex.html">Index</a></li>
+            </ul>
+<ul>
+<li><a href="#sierra-style-template">Sierra-style template</a><ul>
+<li><a href="#keyboardmovementmode">KeyboardMovement.Mode</a></li>
+<li><a href="#keyboardmovementkeyup">KeyboardMovement.KeyUp</a></li>
+<li><a href="#keyboardmovementkeydown">KeyboardMovement.KeyDown</a></li>
+<li><a href="#keyboardmovementkeyleft">KeyboardMovement.KeyLeft</a></li>
+<li><a href="#keyboardmovementkeyright">KeyboardMovement.KeyRight</a></li>
+</ul></li>
+</ul>
+          </nav>
+        </div>
+        <div class="column column-75">
+<section id="sierra-style-template" class="level2">
+<h2>Sierra-style template</h2>
+<p>This template was previously listed as the 'default' template, with the majority of functions used being native to the engine itself. i.e. there is no separate script file to implement any additional behaviour for the mouse cursor. This makes it a good choice for learning how AGS works, since it makes heavy use of the <a href="Mouse.html">mouse cursor functions</a>.</p>
+<p>As a general guide, right clicking changes your cursor mode, left clicking uses the current cursor mode.</p>
+<p>This template also contains the majority of examples for save game and option handling, and also demonstrates the default handling for an inventory window.</p>
+<p>One script module is included, which allows the main character to be controlled with the keyboard. This is switched on and configured with some default settings, but can be reconfigured or switched off entirely by using the defined functions.</p>
+<p>Example:</p>
+<pre><code>// configure the player for arcade action
+KeyboardMovement.Mode = eKeyboardMovementModePressing;
+KeyboardMovement.KeyUp = eKeyW;
+KeyboardMovement.KeyDown = eKeyS;
+KeyboardMovement.KeyLeft = eKeyA;
+KeyboardMovement.KeyRight = eKeyD;
+</code></pre>
+<hr />
+<section id="keyboardmovementmode" class="level3">
+<h3>KeyboardMovement.Mode</h3>
+<pre><code>KeyboardMovementMode KeyboardMovement.Mode
+</code></pre>
+<p>Sets the keyboard movement mode. Possible values are:</p>
+<p><code>eKeyboardMovementModeNone</code> (disable keyboard control)<br> <code>eKeyboardMovementModeTapping</code> (tap a direction to move)<br> <code>eKeyboardMovementModePressing</code> (hold down a direction to move)</p>
+<hr />
+</section>
+<section id="keyboardmovementkeyup" class="level3">
+<h3>KeyboardMovement.KeyUp</h3>
+<pre><code>eKeyCode KeyboardMovement.KeyUp
+</code></pre>
+<p>Assigns the key used to move the player upwards.</p>
+<hr />
+</section>
+<section id="keyboardmovementkeydown" class="level3">
+<h3>KeyboardMovement.KeyDown</h3>
+<pre><code>eKeyCode KeyboardMovement.KeyDown
+</code></pre>
+<p>Assigns the key used to move the player downwards.</p>
+<hr />
+</section>
+<section id="keyboardmovementkeyleft" class="level3">
+<h3>KeyboardMovement.KeyLeft</h3>
+<pre><code>eKeyCode KeyboardMovement.KeyLeft
+</code></pre>
+<p>Assigns the key used to move the player to the left.</p>
+<hr />
+</section>
+<section id="keyboardmovementkeyright" class="level3">
+<h3>KeyboardMovement.KeyRight</h3>
+<pre><code>eKeyCode KeyboardMovement.KeyRight
+</code></pre>
+<p>Assigns the key used to move the player to the right.</p>
+</section>
+</section>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <script type="text/javascript" src="js/search.js"></script>
+</body>
+</html>
