@@ -1,0 +1,1 @@
+var gamefiles = ['CrazyBG.ags', 'acsetup.cfg'];
