@@ -1,0 +1,1 @@
+var gamefiles = ['Ags4VideoTest.ags', 'acsetup.cfg'];
