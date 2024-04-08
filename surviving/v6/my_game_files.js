@@ -1,0 +1,1 @@
+var gamefiles = ['SurvivingSomething.ags', 'acsetup.cfg'];
