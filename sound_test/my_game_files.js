@@ -1,0 +1,1 @@
+var gamefiles = ['audio.vox', 'TestSound.ags', 'acsetup.cfg'];
