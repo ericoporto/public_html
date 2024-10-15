@@ -1,0 +1,1 @@
+var gamefiles = ['Particles.ags', 'acsetup.cfg'];
